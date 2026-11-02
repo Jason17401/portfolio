@@ -12,7 +12,7 @@ export const profile = {
   },
 } as const;
 
-export const headerNav = [
+export const navItems = [
   { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
