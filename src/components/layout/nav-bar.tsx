@@ -2,11 +2,12 @@ import Link from "next/link";
 import { profile, navItems } from "@/lib/site";
 import { NavLink } from "./nav-link";
 import { ThemeToggle } from "./theme-toggle";
+import { Container } from "./container";
 
 export function NavBar() {
   return (
     <header className="border-b">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+      <Container className="mx-auto flex h-16 items-center justify-between px-6">
         <Link href="/" className="font-medium">
           {profile.name}
         </Link>
@@ -22,7 +23,7 @@ export function NavBar() {
           </nav>
           <ThemeToggle />
         </div>
-      </div>
+      </Container>
     </header>
   );
 }

@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/layout/nav-bar";
+import { Footer } from "@/components/layout/footer";
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
@@ -7,7 +8,10 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
         Skip to Content
       </a>
       <NavBar />
-      <main id="main">{children}</main>
+      <main id="main" className="flex-1">
+        {children}
+      </main>
+      <Footer />
     </>
   );
 }
