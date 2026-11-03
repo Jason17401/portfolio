@@ -30,6 +30,11 @@ export interface ProjectImage {
   alt: string;
 }
 
+export interface ProjectHighlight {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   // Project Details
   slug: string;
@@ -42,6 +47,7 @@ export interface Project {
   status: ProjectStatus;
   startYear: number;
   coverImage: ProjectImage;
+  highlights: ProjectHighlight[];
   repository: string;
   caseStudy: string;
 
