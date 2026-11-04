@@ -17,3 +17,5 @@ export const navItems = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const satisfies readonly NavItem[];
+
+export const siteUrl = "https://jasonperng.vercel.app";
