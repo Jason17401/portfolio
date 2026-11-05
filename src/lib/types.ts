@@ -35,21 +35,38 @@ export interface ProjectHighlight {
   value: string;
 }
 
+export interface ProjectDecision {
+  title: string;
+  reason: string;
+  tradeoff: string;
+}
+
+export interface ProjectContent {
+  coverImage?: ProjectImage;
+  highlights?: ProjectHighlight[];
+  overview?: string;
+  problem?: string;
+  constraints?: string;
+  architecture?: string;
+  decisions?: ProjectDecision[];
+  challenges?: string;
+  results?: string;
+  next?: string;
+  aiUsage?: string;
+}
+
 export interface Project {
   // Project Details
   slug: string;
   title: string;
   tagline: string;
-  summary: string;
   role: string;
   tech: Tech[];
   track: Track;
   status: ProjectStatus;
   startYear: number;
-  coverImage: ProjectImage;
-  highlights: ProjectHighlight[];
   repository: string;
-  caseStudy: string;
+  content: ProjectContent;
 
   // Project Settings
   featured: boolean;

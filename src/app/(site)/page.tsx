@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/container";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <section className="py-24">
       <Container>

@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/container";
 
-export default function Contact() {
+export default function ContactPage() {
   return (
     <section className="py-24">
       <Container>

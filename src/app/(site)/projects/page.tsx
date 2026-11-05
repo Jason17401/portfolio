@@ -1,6 +1,6 @@
 import { Container } from "@/components/layout/container";
 
-export default function Projects() {
+export default function ProjectsPage() {
   return (
     <section className="py-24">
       <Container>
