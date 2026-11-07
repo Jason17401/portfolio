@@ -1,8 +1,18 @@
-export const STATUS = ["In Progress", "Completed", "Hiatus"] as const;
-export type ProjectStatus = (typeof STATUS)[number];
+export const STATUS_LABELS = {
+  "in-progress": "In Progress",
+  completed: "Completed",
+  hiatus: "Hiatus",
+} as const;
+export type Status = keyof typeof STATUS_LABELS;
+export const STATUS = Object.keys(STATUS_LABELS) as Status[];
 
-export const TRACK = ["Web", "Java", "Data & ML"] as const;
-export type Track = (typeof TRACK)[number];
+export const TRACK_LABELS = {
+  "data-ml": "Data & ML",
+  web: "Web",
+  java: "Java",
+} as const;
+export type Track = keyof typeof TRACK_LABELS;
+export const TRACK = Object.keys(TRACK_LABELS) as Track[];
 
 export const TECH = [
   "TypeScript",
@@ -63,7 +73,7 @@ export interface Project {
   role: string;
   tech: Tech[];
   track: Track;
-  status: ProjectStatus;
+  status: Status;
   startYear: number;
   repository: string;
   content: ProjectContent;
