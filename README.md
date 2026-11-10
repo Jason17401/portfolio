@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jason Perng's Portfolio
 
-## Getting Started
+This repository includes my personal portfolio site, illustrating the projects I have built and been a part of, with explanations highlighting each product. This site also functions as one of my projects, focusing on learning Next.js while refreshing my knowledge of React and TypeScript in addition to providing a centralised place where I can showcase my portfolio. This project's roadmap and list of features can be found on the [wiki](https://github.com/Jason17401/portfolio/wiki/Project-Specifications).
 
-First, run the development server:
+**Live deployed site: [<u>jasonperng.vercel.app</u>](jasonperng.vercel.app)**
+
+## Developer Instructions
+
+This developer environment requires `Node.js` 20 or newer, with `v26.13.0` being the exact version used during development, and `npm` installed.
 
 ```bash
+
+git clone https://github.com/Jason17401/portfolio.git
+cd portfolio
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then in your browser, navigate to the site's URL `localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script              | Purpose                                                                       |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `npm run dev`       | Runs the site in a local dev server where change are reflected in real-time.  |
+| `npm run build`     | Compiles and builds the source code into production assets.                   |
+| `npm run start`     | Boots up the application server from local compile build files.               |
+| `npm run lint`      | Runs ESLint across the codebase to check for code quality.                    |
+| `npm run format`    | Formats the codebase with Prettier according to set standards.                |
+| `npm run typecheck` | Checks codebase for type errors, including routes and pages without building. |
 
-## Learn More
+## Workflow
 
-To learn more about Next.js, take a look at the following resources:
+- **Branching:** all new work beings from feature branches (`feat/..`, `fix/..`, `doc/..`) and is merged into `main` through pull requests.
+- **Pre-commit hook:** Runs ESLint and Prettier check on staged codebase files.
+- **Pre-push hook:** Runs `typegen` to check for any type errors in staged codebase files before CI.
+- **CI:** Every pull request will run lint, type check, production build, and deployment.
+- **Deploying:** For each pull request, a preview build on vercel is automatically generated and `main` is deployed onto production.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technology Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Framework:** Next.js 16
+- **Languages:** TypeScript, HTML, CSS
+- **Styling:** Tailwind CSS, shadcn/ui, and next-themes
+- **Tools:** ESLint, Prettier, Husky, and lint-staged
+- **CI/CD:** GitHub Actions and Vercel
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+    app/
+        (site)/
+            projects/
+                [slug]/                 Dynamic Page per Project
+                page.tsx                Project List Page
+            about/                      About Page
+            contact/                    Contact page
+            layout.tsx
+            page.tsx                    Home page
+        layout.tsx                      Root layout
+        not-found.tsx                   404 Not Found Page
+        sitemap.ts
+        robots.ts
+        icon.tsx
+    components/
+        layout/                         Site structure
+        ui/                             shadcn/ui primitives
+    lib/                                Shared types, site details, utils
+    server/
+        queries/                        Data access
+```
