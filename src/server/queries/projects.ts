@@ -8,7 +8,7 @@ import type { Project, ProjectSummary } from "@/lib/types";
 //     tagline: "",
 //     role: "",
 //     tech: [],
-//     track: "Data & ML",
+//     track: "data-ml",
 //     status: "in-progress",
 //     startYear: 0,
 //     repository: "",
@@ -53,40 +53,47 @@ const projects: Project[] = [
 ];
 
 const bySortOrder = (a: Project, b: Project) => a.sortOrder - b.sortOrder;
+const isPublished = (p: Project) => p.published;
 
-export const getPublishedProjects = cache(
-  async (): Promise<readonly Project[]> => {
-    return projects.filter((project) => project.published).sort(bySortOrder);
-  },
+const toSummary = ({
+  slug,
+  title,
+  tagline,
+  role,
+  tech,
+  track,
+  status,
+  startYear,
+  published,
+}: Project) => {
+  return {
+    slug,
+    title,
+    tagline,
+    role,
+    tech,
+    track,
+    status,
+    startYear,
+    published,
+  };
+};
+
+const getPublishedProjects = cache(async (): Promise<readonly Project[]> =>
+  projects.filter(isPublished).sort(bySortOrder),
 );
 
 export const getProjectSummaries = cache(
-  async (): Promise<ProjectSummary[]> => {
-    const published = await getPublishedProjects();
-    return published.map(
-      ({ slug, title, tagline, role, tech, status, startYear }) => ({
-        slug,
-        title,
-        tagline,
-        role,
-        tech,
-        status,
-        startYear,
-      }),
-    );
-  },
+  async (): Promise<readonly ProjectSummary[]> =>
+    (await getPublishedProjects()).map(toSummary),
 );
 
 export const getFeaturedProject = cache(
-  async (): Promise<Project | undefined> => {
-    const published = await getPublishedProjects();
-    return published.find((project) => project.featured);
-  },
+  async (): Promise<Project | undefined> =>
+    (await getPublishedProjects()).find((project) => project.featured),
 );
 
 export const getProjectBySlug = cache(
-  async (slug: string): Promise<Project | undefined> => {
-    const published = await getPublishedProjects();
-    return published.find((project) => project.slug === slug);
-  },
+  async (slug: string): Promise<Project | undefined> =>
+    (await getPublishedProjects()).find((project) => project.slug === slug),
 );

@@ -7,9 +7,9 @@ export type Status = keyof typeof STATUS_LABELS;
 export const STATUS = Object.keys(STATUS_LABELS) as Status[];
 
 export const TRACK_LABELS = {
-  "data-ml": "Data & ML",
   web: "Web",
   java: "Java",
+  "data-ml": "Data & ML",
 } as const;
 export type Track = keyof typeof TRACK_LABELS;
 export const TRACK = Object.keys(TRACK_LABELS) as Track[];
@@ -56,12 +56,12 @@ export interface ProjectContent {
   highlights?: ProjectHighlight[];
   overview?: string;
   problem?: string;
-  constraints?: string;
+  constraints?: string[];
   architecture?: string;
   decisions?: ProjectDecision[];
   challenges?: string;
   results?: string;
-  next?: string;
+  next?: string[];
   aiUsage?: string;
 }
 
@@ -86,5 +86,13 @@ export interface Project {
 
 export type ProjectSummary = Pick<
   Project,
-  "slug" | "title" | "tagline" | "role" | "tech" | "status" | "startYear"
+  | "slug"
+  | "title"
+  | "tagline"
+  | "role"
+  | "tech"
+  | "track"
+  | "status"
+  | "startYear"
+  | "published"
 >;

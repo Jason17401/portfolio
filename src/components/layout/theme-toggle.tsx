@@ -14,7 +14,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       <Moon className="dark:hidden" aria-hidden="true" />
-      <Sun className="hidden dark:hidden" aria-hidden="true" />
+      <Sun className="hidden dark:block" aria-hidden="true" />
       <span className="sr-only dark:hidden">Switch to dark mode</span>
       <span className="sr-only hidden dark:inline">Switch to light mode</span>
     </Button>

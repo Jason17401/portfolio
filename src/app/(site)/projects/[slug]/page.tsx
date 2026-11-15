@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import {
   getProjectBySlug,
-  getPublishedProjects,
+  getProjectSummaries,
 } from "@/server/queries/projects";
 import { Content, ContentSkeleton } from "./content";
 
 export async function generateStaticParams() {
-  const published = await getPublishedProjects();
+  const published = await getProjectSummaries();
   return published.map((project) => ({ slug: project.slug }));
 }
 
