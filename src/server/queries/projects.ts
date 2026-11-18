@@ -25,7 +25,7 @@ const projects: Project[] = [
     tagline:
       "Capturing photos of books to automate online marketplace listings.",
     role: "Solo",
-    tech: ["Data Processing", "PyQt", "Python", "Git"],
+    tech: ["Data Processing", "PyQt", "Python"],
     track: "data-ml",
     status: "in-progress",
     startYear: 2026,
