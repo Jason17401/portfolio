@@ -4,7 +4,6 @@ export const STATUS_LABELS = {
   hiatus: "Hiatus",
 } as const;
 export type Status = keyof typeof STATUS_LABELS;
-export const STATUS = Object.keys(STATUS_LABELS) as Status[];
 
 export const TRACK_LABELS = {
   web: "Web",
@@ -12,7 +11,6 @@ export const TRACK_LABELS = {
   "data-ml": "Data & ML",
 } as const;
 export type Track = keyof typeof TRACK_LABELS;
-export const TRACK = Object.keys(TRACK_LABELS) as Track[];
 
 export const TECH = [
   "TypeScript",
@@ -96,3 +94,16 @@ export type ProjectSummary = Pick<
   | "startYear"
   | "published"
 >;
+
+export interface ProjectFilters {
+  track?: Track;
+  tech?: Tech;
+  status?: Status;
+}
+export const FILTER_KEY = ["track", "tech", "status"] as const;
+export type FilterKey = (typeof FILTER_KEY)[number];
+
+export type FilterOption = {
+  value: string;
+  label: string;
+};

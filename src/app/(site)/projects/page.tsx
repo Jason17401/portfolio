@@ -5,6 +5,8 @@ import {
   ProjectList,
   ProjectListSkeleton,
 } from "@/components/projects/project-list";
+import { FilterBar, FilterBarSkeleton } from "@/components/projects/filter-bar";
+import { ProjectFilters } from "@/lib/types";
 
 async function ProjectCount() {
   const projects = await getProjectSummaries();
@@ -22,21 +24,25 @@ async function ProjectBrowser({
   searchParams: PageProps<"/projects">["searchParams"];
 }) {
   const search = await searchParams;
+  const filters: ProjectFilters = {};
   const projects = await getProjectSummaries();
   return (
     <>
       <p aria-hidden="true">{search[0]}</p>
-      {projects.length > 0 ? (
-        <ProjectList projects={projects} />
-      ) : (
-        <ProjectListSkeleton />
-      )}
+      <FilterBar filters={filters} />
+      <ProjectList projects={projects} />
     </>
   );
 }
 
 function ProjectBrowserSkeleton() {
-  return <></>;
+  return (
+    <div role="status">
+      <span className="sr-only">Loading projects</span>
+      <FilterBarSkeleton />
+      <ProjectListSkeleton />
+    </div>
+  );
 }
 
 export default function ProjectsPage({ searchParams }: PageProps<"/projects">) {
