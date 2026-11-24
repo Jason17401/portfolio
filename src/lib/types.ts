@@ -14,7 +14,6 @@ export type Track = keyof typeof TRACK_LABELS;
 
 export const TECH = [
   "TypeScript",
-  "JavaScript",
   "React",
   "Next.js",
   "Node.js",
@@ -25,11 +24,7 @@ export const TECH = [
   "Computer Vision",
   "Data Processing",
   "NoSQL",
-  "HTML",
-  "CSS",
   "Express",
-  "RESTful API",
-  "Git",
 ] as const;
 export type Tech = (typeof TECH)[number];
 

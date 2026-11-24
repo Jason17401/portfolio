@@ -1,6 +1,6 @@
 import {
-  // STATUS_LABELS,
-  // TECH,
+  STATUS_LABELS,
+  TECH,
   TRACK_LABELS,
   type FilterOption,
   type ProjectFilters,
@@ -8,6 +8,7 @@ import {
 import { Skeleton } from "../ui/skeleton";
 import { cn } from "@/lib/utils";
 import { PillFilter } from "./pill-filter";
+import { DropDownFilter } from "./dropdown-filter";
 
 const BAR =
   "flex flex-wrap items-end justify-between gap-4 border-b border-border py-6";
@@ -16,8 +17,8 @@ const toOptions = (labels: Record<string, string>): FilterOption[] =>
   Object.entries(labels).map(([value, label]) => ({ value, label }));
 
 const TRACK_OPTIONS = toOptions(TRACK_LABELS);
-// const STATUS_OPTIONS = toOptions(STATUS_LABELS);
-// const TECH_OPTIONS: FilterOption[] = TECH.map((t) => ({ value: t, label: t }));
+const STATUS_OPTIONS = toOptions(STATUS_LABELS);
+const TECH_OPTIONS: FilterOption[] = TECH.map((t) => ({ value: t, label: t }));
 
 type FilterBarProps = { filters: ProjectFilters };
 
@@ -30,6 +31,20 @@ export function FilterBar({ filters }: FilterBarProps) {
         options={TRACK_OPTIONS}
         filters={filters}
       />
+      <div className="flex gap-3">
+        <DropDownFilter
+          name={"tech"}
+          label="Tech"
+          options={TECH_OPTIONS}
+          filters={filters}
+        />
+        <DropDownFilter
+          name={"status"}
+          label="Status"
+          options={STATUS_OPTIONS}
+          filters={filters}
+        />
+      </div>
     </search>
   );
 }
