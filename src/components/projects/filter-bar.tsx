@@ -1,6 +1,6 @@
 import {
   STATUS_LABELS,
-  TECH,
+  TECH_LABELS,
   TRACK_LABELS,
   type FilterOption,
   type ProjectFilters,
@@ -18,7 +18,7 @@ const toOptions = (labels: Record<string, string>): FilterOption[] =>
 
 const TRACK_OPTIONS = toOptions(TRACK_LABELS);
 const STATUS_OPTIONS = toOptions(STATUS_LABELS);
-const TECH_OPTIONS: FilterOption[] = TECH.map((t) => ({ value: t, label: t }));
+const TECH_OPTIONS = toOptions(TECH_LABELS);
 
 type FilterBarProps = { filters: ProjectFilters };
 

@@ -12,21 +12,19 @@ export const TRACK_LABELS = {
 } as const;
 export type Track = keyof typeof TRACK_LABELS;
 
-export const TECH = [
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Java",
-  "Python",
-  "PyQt",
-  "Android Java",
-  "Computer Vision",
-  "Data Processing",
-  "NoSQL",
-  "Express",
-] as const;
-export type Tech = (typeof TECH)[number];
+export const TECH_LABELS = {
+  typescript: "TypeScript",
+  react: "React",
+  "next-js": "Next.js",
+  java: "Java",
+  python: "Python",
+  pyqt: "PyQt",
+  "android-java": "Android Java",
+  "computer-vision": "Computer Vision",
+  "data-processing": "Data Processing",
+  nosql: "NoSQL",
+} as const;
+export type Tech = keyof typeof TECH_LABELS;
 
 export interface ProjectImage {
   src: string;
