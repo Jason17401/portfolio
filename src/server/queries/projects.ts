@@ -25,7 +25,7 @@ const projects: Project[] = [
     tagline:
       "Capturing photos of books to automate online marketplace listings.",
     role: "Solo",
-    tech: ["Data Processing", "PyQt", "Python"],
+    tech: ["data-processing", "pyqt", "python"],
     track: "data-ml",
     status: "in-progress",
     startYear: 2026,
@@ -40,7 +40,7 @@ const projects: Project[] = [
     title: "Chess App",
     tagline: "A Java chess app with beginner-level engines",
     role: "Solo",
-    tech: ["Java"],
+    tech: ["java"],
     track: "java",
     status: "in-progress",
     startYear: 2025,
