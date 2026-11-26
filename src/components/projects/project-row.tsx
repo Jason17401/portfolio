@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { STATUS_LABELS, TRACK_LABELS, type ProjectSummary } from "@/lib/types";
+import {
+  STATUS_LABELS,
+  TECH_LABELS,
+  TRACK_LABELS,
+  type ProjectSummary,
+} from "@/lib/types";
 
 type ProjectRowProps = { project: ProjectSummary; className?: string };
 
@@ -29,7 +34,9 @@ export function ProjectRow({ project, className }: ProjectRowProps) {
       </p>
       <p className="text-sm">
         <span className="sr-only">Stack: </span>
-        {project.tech.join(" · ")}
+        {project.tech.length > 1
+          ? project.tech.map((tech) => TECH_LABELS[tech]).join(" · ")
+          : TECH_LABELS[project.tech[0]]}
       </p>
       <p className="text-sm">
         <span className="sr-only">Status: </span>

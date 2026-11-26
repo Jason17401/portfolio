@@ -6,7 +6,12 @@ import {
   ProjectListSkeleton,
 } from "@/components/projects/project-list";
 import { FilterBar, FilterBarSkeleton } from "@/components/projects/filter-bar";
-import { ProjectFilters } from "@/lib/types";
+import {
+  filterProjects,
+  hasActiveFilters,
+  parseFilters,
+} from "@/lib/project-filters";
+import Link from "next/link";
 
 async function ProjectCount() {
   const projects = await getProjectSummaries();
@@ -23,14 +28,37 @@ async function ProjectBrowser({
 }: {
   searchParams: PageProps<"/projects">["searchParams"];
 }) {
-  const search = await searchParams;
-  const filters: ProjectFilters = {};
+  const filters = parseFilters(await searchParams);
   const projects = await getProjectSummaries();
+  const filteredProjects = filterProjects(projects, filters);
+  const isFiltered = hasActiveFilters(filters);
   return (
     <>
-      <p aria-hidden="true">{search[0]}</p>
       <FilterBar filters={filters} />
-      <ProjectList projects={projects} />
+      <p aria-live="polite" className="sr-only">
+        {isFiltered
+          ? `Showing ${filteredProjects.length} of ${projects.length} projects`
+          : ""}
+      </p>
+      {filteredProjects.length > 0 ? (
+        <ProjectList projects={filteredProjects} />
+      ) : (
+        <p className="py-12 text-muted-foreground">
+          {isFiltered ? (
+            <>
+              No projects match these filters.{" "}
+              <Link
+                href="/projects"
+                className="text-foreground underline underline-offset-4"
+              >
+                Clear filters
+              </Link>
+            </>
+          ) : (
+            "No projects published yet."
+          )}
+        </p>
+      )}
     </>
   );
 }

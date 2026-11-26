@@ -1,3 +1,4 @@
+import { filtersHref } from "@/lib/project-filters";
 import { FilterKey, FilterOption, ProjectFilters } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -21,7 +22,7 @@ export function PillFilter({ name, label, options, filters }: PillFilterProps) {
           return (
             <li key={item.value}>
               <Link
-                href=""
+                href={filtersHref(filters, name, item.value)}
                 scroll={false}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(

@@ -1,5 +1,6 @@
 "use client";
 
+import { filtersHref } from "@/lib/project-filters";
 import { FilterKey, FilterOption, ProjectFilters } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useId, useOptimistic, useTransition } from "react";
@@ -26,7 +27,9 @@ export function DropDownFilter({
     const next = event.target.value;
     startTransition(() => {
       setValue(next);
-      router.replace("", { scroll: false });
+      router.replace(filtersHref(filters, name, next || undefined), {
+        scroll: false,
+      });
     });
   };
 
